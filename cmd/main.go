@@ -8,6 +8,6 @@ import (
 func main() {
 
 	// Inicia la función Lambda
-	lambda.Start(handlers.HandleLambdaEvent)
+	lambda.Start(handlers.HandleRequest)
 
 }
