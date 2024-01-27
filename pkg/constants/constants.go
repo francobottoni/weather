@@ -1,6 +1,7 @@
-package pkg
+package constants
 
 const (
-	responseDefault  = "You succesfully response!"
-	notAllowedMethod = "Method not allowed :("
+	ResponseDefaultGet  = "GET You succesfully response!"
+	ResponseDefaultPost = "Post You succesfully response!"
+	NotAllowedMethod    = "Method not allowed :("
 )
