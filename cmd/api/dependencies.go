@@ -15,7 +15,7 @@ type DependenciesProyect struct {
 	LambdaHandler      *handlers.HandlerLambda
 }
 
-func initializeDependencies() *DependenciesProyect {
+func InitializeDependencies() *DependenciesProyect {
 	dependencies := DependenciesProyect{}
 
 	dependencies.OpenWeatherRepo = repositories.NewOpenWeatherClient(apiKey)
