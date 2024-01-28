@@ -3,6 +3,7 @@ package services
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/francobottoni/weather/internal/domain"
 	"github.com/francobottoni/weather/internal/ports"
 	"log"
@@ -22,6 +23,7 @@ func (s *service) GetByCity(c context.Context, city string) (domain.OpenWeatherR
 
 	resp, err := s.openWeatherClient.GetWeatherByCity(c, city)
 	if err != nil {
+		fmt.Println("Ocurrio un error en la app de clima")
 		return openWeatherResponse, err
 	}
 

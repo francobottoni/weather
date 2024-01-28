@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"github.com/aws/aws-lambda-go/events"
-	"github.com/francobottoni/weather/cmd/api"
 	"github.com/francobottoni/weather/internal/ports"
 	"github.com/francobottoni/weather/pkg/constants"
 	"net/http"
@@ -33,15 +32,14 @@ func NewHandlerLambda(openWeatherService ports.OpenWeatherService) *HandlerLambd
 }
 
 // Este metodo es el por defecto punto de entrada, por lo que en este metodo nosotros realizamos la inyeccion de dependencias y ruteo a los servicios
-func HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
+func (h *HandlerLambda) HandleRequest(request events.APIGatewayProxyRequest) (events.APIGatewayProxyResponse, error) {
 
-	d := api.IntializeApp()
 	ctx := context.Background()
 	if request.HTTPMethod == http.MethodGet {
 		paramValue, paramExists := request.QueryStringParameters["city"]
 		if paramExists {
 
-			weatherResponse, err := d.LambdaHandler.openWeatherService.GetByCity(ctx, paramValue)
+			weatherResponse, err := h.openWeatherService.GetByCity(ctx, paramValue)
 			if err != nil {
 				return events.APIGatewayProxyResponse{Body: constants.ErrorWhenGetInfo, StatusCode: http.StatusNotFound}, err
 			}
