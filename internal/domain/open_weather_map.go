@@ -5,20 +5,18 @@ type OpenWeatherRequest struct {
 }
 
 type OpenWeatherResponse struct {
-	lat     string      `json:"lat"`
-	lon     string      `json:"lon"`
-	alerts  interface{} `json:"alerts"`
-	current current
+	coord    coord     `json:"coord"`
+	timezone int       `json:"timezone"`
+	name     string    `json:"name"`
+	weather  []weather `json:"weather"`
 }
 
-type current struct {
-	weather    weather
-	clouds     string `json:"clouds"`
-	visibility string `json:"visibility"`
+type coord struct {
+	lat float32 `json:"lat"`
+	lon float32 `json:"lon"`
 }
 
 type weather struct {
 	description string `json:"description"`
 	main        string `json:"main"`
-	id          string `json:"id"`
 }

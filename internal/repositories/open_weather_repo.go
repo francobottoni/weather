@@ -3,6 +3,7 @@ package repositories
 import (
 	"context"
 	"fmt"
+	"github.com/francobottoni/weather/internal/ports"
 	"github.com/go-resty/resty/v2"
 )
 
@@ -11,9 +12,9 @@ type repository struct {
 	ClientRest *resty.Client
 }
 
-func NewOpenWeatherClient(apiKey string) repository {
+func NewOpenWeatherClient(apiKey string) ports.OpenWeatherRepo {
 	client := resty.New()
-	return repository{ApiKey: apiKey, ClientRest: client}
+	return &repository{ApiKey: apiKey, ClientRest: client}
 }
 
 func (c *repository) GetWeatherByCity(ctx context.Context, city string) (*resty.Response, error) {
